@@ -4,33 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78947609-3c55-44f9-8123-6e8b9efdd41e" name="Changes" comment="create user_aut and task">
+    <list default="true" id="78947609-3c55-44f9-8123-6e8b9efdd41e" name="Changes" comment="files">
+      <change afterPath="$PROJECT_DIR$/ToDoApi/user_aut/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToDoApi/user_aut/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DiplomApi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DiplomApi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/ToDoApi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/ToDoApi/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/ToDoApi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/ToDoApi/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/user_aut/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/user_aut/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/user_aut/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/user_aut/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "igorek-exe"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;igorek-exe&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/igorek-exe/DiplomApi.git",
-    "accountId": "a4dd5cbf-b401-499a-9c17-1b7051f1cf49"
+}</component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="a4dd5cbf-b401-499a-9c17-1b7051f1cf49" />
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/igorek-exe/DiplomApi.git&quot;,
+    &quot;accountId&quot;: &quot;a4dd5cbf-b401-499a-9c17-1b7051f1cf49&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2mYormaHU3GrUMleE9WME1bi7c2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -38,11 +58,76 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python tests.Python tests for tests.UserTests.test_create_user.executor": "Run",
+    "Python tests.Python tests for user_aut.tests.UserTests.executor": "Run",
+    "Python.manage.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "last_opened_file_path": "/home/igor/PycharmProjects/DiplomApi",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
+  <component name="RunManager" selected="Python.manage">
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DiplomApi" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ToDoApi" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ToDoApi/manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.UserTests.test_create_user" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="DiplomApi" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ToDoApi/user_aut" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.UserTests.test_create_user&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for user_aut.tests.UserTests" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="DiplomApi" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ToDoApi/user_aut" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;user_aut.tests.UserTests&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.manage" />
+        <item itemvalue="Python tests.Python tests for tests.UserTests.test_create_user" />
+        <item itemvalue="Python tests.Python tests for user_aut.tests.UserTests" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -67,11 +152,31 @@
       <option name="project" value="LOCAL" />
       <updated>1727263348895</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="files">
+      <option name="closed" value="true" />
+      <created>1727263850833</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727263850833</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create user_aut and task" />
-    <option name="LAST_COMMIT_MESSAGE" value="create user_aut and task" />
+    <MESSAGE value="files" />
+    <option name="LAST_COMMIT_MESSAGE" value="files" />
   </component>
 </project>

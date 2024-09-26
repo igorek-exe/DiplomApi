@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-$9jmugzbmh-i%a12@wb!f&346_4(#-d)5#y3+3zaox(ty(my3m
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'user_aut.CustomUser'
 
 
 # Application definition
@@ -37,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
 
+]
+INSTALLED_APPS += [
+    "user_aut",
+    'rest_framework',
+'django_extensions'
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -48,6 +54,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  # По умолчанию нужна аутентификация
+    ],
+}
+
 
 ROOT_URLCONF = 'ToDoApi.urls'
 
