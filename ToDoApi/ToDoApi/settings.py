@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-$9jmugzbmh-i%a12@wb!f&346_4(#-d)5#y3+3zaox(ty(my3m
 DEBUG = True
 
 ALLOWED_HOSTS = []
-AUTH_USER_MODEL = 'user_aut.CustomUser'
+AUTH_USER_MODEL = 'api.CUser'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'smtp.example.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your_email@example.com'
+# EMAIL_HOST_PASSWORD = 'your_password'
 
 
 # Application definition
@@ -41,9 +47,11 @@ INSTALLED_APPS = [
 
 ]
 INSTALLED_APPS += [
-    "user_aut",
+    'api',
     'rest_framework',
-'django_extensions'
+    'rest_framework.authtoken',
+    'django_extensions',
+
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,12 +62,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',  # По умолчанию нужна аутентификация
-    ],
-}
-
 
 ROOT_URLCONF = 'ToDoApi.urls'
 
@@ -115,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -133,3 +135,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # Классическая аутентификация по токенам
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Доступ только для аутентифицированных пользователей
+    ],
+}
