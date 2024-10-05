@@ -1,8 +1,8 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth import get_user_model
 
-class CUser(AbstractUser):
-    is_deleted = models.BooleanField(default=False)
+
+User = get_user_model()
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -11,7 +11,7 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
     deleted = models.BooleanField(default=False)
-    user = models.ForeignKey(CUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     class Meta:
         verbose_name = "Категории"
         verbose_name_plural = "Категории"
@@ -27,7 +27,7 @@ class Priority(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
     deleted = models.BooleanField(default=False)
-    user = models.ForeignKey(CUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     class Meta:
         verbose_name = "Приоритет"
         verbose_name_plural = "Приоритеты"
@@ -42,7 +42,7 @@ class Task(models.Model):
         ('completed', 'Completed'),
     ]
 
-    created_by = models.ForeignKey(CUser, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=40)
     description = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')

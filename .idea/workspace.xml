@@ -4,27 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78947609-3c55-44f9-8123-6e8b9efdd41e" name="Changes" comment="create tests and work with permissions">
+    <list default="true" id="78947609-3c55-44f9-8123-6e8b9efdd41e" name="Changes" comment="Вакханалия">
+      <change afterPath="$PROJECT_DIR$/ToDoApi/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ToDoApi/ToDoApi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/ToDoApi/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ToDoApi/ToDoApi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/ToDoApi/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/task/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/task/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/task/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/task/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/task/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/task/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/task/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/api/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/create.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/create.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/user_aut/views.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +61,7 @@
     &quot;Python tests.Python tests for tests.UserTests.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for tests.UserTests.test_create_user.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for user_aut.tests.UserTests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create.executor&quot;: &quot;Run&quot;,
     &quot;Python.manage.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -83,6 +75,28 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.manage">
+    <configuration name="create" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DiplomApi" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ToDoApi" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ToDoApi/create.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DiplomApi" />
       <option name="ENV_FILES" value="" />
@@ -168,6 +182,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.manage" />
+        <item itemvalue="Python.create" />
         <item itemvalue="Python tests.Python tests for user_aut.tests.UserTests" />
         <item itemvalue="Python tests.Python tests for user_aut.tests.UserTests.test_create_user" />
         <item itemvalue="Python tests.Python tests for user_aut.tests.UserTests" />
@@ -214,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727376241681</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Вакханалия">
+      <option name="closed" value="true" />
+      <created>1727899241381</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727899241381</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -232,6 +255,7 @@
     <MESSAGE value="create user_aut and task" />
     <MESSAGE value="files" />
     <MESSAGE value="create tests and work with permissions" />
-    <option name="LAST_COMMIT_MESSAGE" value="create tests and work with permissions" />
+    <MESSAGE value="Вакханалия" />
+    <option name="LAST_COMMIT_MESSAGE" value="Вакханалия" />
   </component>
 </project>

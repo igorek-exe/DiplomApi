@@ -26,13 +26,7 @@ SECRET_KEY = 'django-insecure-$9jmugzbmh-i%a12@wb!f&346_4(#-d)5#y3+3zaox(ty(my3m
 DEBUG = True
 
 ALLOWED_HOSTS = []
-AUTH_USER_MODEL = 'api.CUser'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'smtp.example.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your_email@example.com'
-# EMAIL_HOST_PASSWORD = 'your_password'
 
 
 # Application definition
@@ -51,7 +45,7 @@ INSTALLED_APPS += [
     'rest_framework',
     'rest_framework.authtoken',
     'django_extensions',
-
+    'djoser'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,8 +55,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
+]
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.your-email-provider.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-email@example.com'
+EMAIL_HOST_PASSWORD = 'your-email-password'
 ROOT_URLCONF = 'ToDoApi.urls'
 
 TEMPLATES = [
@@ -142,4 +142,18 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',  # Доступ только для аутентифицированных пользователей
     ],
+}
+DJOSER = {
+
+    'PASSWORD_RESET_CONFIRM_URL': 'http://localhost:8000/#/password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'http://localhost:8000/#/activate/{uid}/{token}',
+    # 'SEND_ACTIVATION_EMAIL': True,
+
+    'USER_ID_FIELD': 'id',
+    'LOGIN_FIELD': 'username',  # Использовать username для входа
+    'SERIALIZERS': {
+        'user_create': 'api.serializers.UserCreateSerializer',  # Сериализатор для создания пользователя
+        'user': 'api.serializers.UserSerializer',  # Сериализатор для получения пользователя
+        'current_user': 'api.serializers.UserSerializer',  # Сериализатор для текущего пользователя
+    },
 }

@@ -1,47 +1,55 @@
-from .models import Task, CUser
-
-from djoser.serializers import UserSerializer as BaseUserSerializer
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import get_user_model
+from .models import Task, Category, Priority
 from rest_framework import serializers
+from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer, UserSerializer as BaseUserSerializer
 
 
-class UserCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
-    class Meta:
-        model = CUser
+User = get_user_model()
+
+class UserCreateSerializer(BaseUserCreateSerializer):
+    email = serializers.EmailField(required=True)
+    class Meta(BaseUserCreateSerializer.Meta):
+        model = User
         fields = ['id', 'username', 'email', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
 
-    def create(self, validated_data):
-        user = CUser(**validated_data)  # Создание нового экземпляра пользователя
-        user.set_password(validated_data['password'])  # Хэширование пароля
-        user.save()  # Сохранение пользователя в базе данных
+    def create(self, validated_data): # Проверка уникальности email
+        if User.objects.filter(email=validated_data['email']).exists():
+            raise serializers.ValidationError({"email": "Этот адрес электронной почты уже занят."})
+
+        user = User(**validated_data)
+        user.set_password(validated_data['password'])  # Хэшируем пароль
+        user.save()
         return user
 
-
-
 class UserSerializer(BaseUserSerializer):
-    password = serializers.CharField(write_only=True, required=False)
-
+    email = serializers.EmailField(required=True)
     class Meta(BaseUserSerializer.Meta):
-        model = CUser
-        fields = ['id', 'username', 'email', 'password',]
+        model = User
+        fields = ['id', 'username', 'email']
 
-    def update(self, instance, validated_data): # Обновление имени пользователя
-        if 'username' in validated_data:
-            instance.username = validated_data['username']
+class AdminUserSerializer(BaseUserSerializer):
+    email = serializers.EmailField(required=True)
+    class Meta(BaseUserSerializer.Meta):
+        model = User
+        fields = ['id', 'username', 'email', 'is_active', 'is_staff']  # Поля для администратора
 
-        # Обновление пароля
-        if 'password' in validated_data:
-            instance.set_password(validated_data['password'])
-            update_session_auth_hash(self.context['request'], instance)  # Обновление сессии после изменения пароля
 
-        instance.save()  # Сохраняем изменения
-        return super().update(instance, validated_data)
-
-#################################################################################################
+#########################################################TASKS############################
 
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ('title', 'description')
+        fields = '__all__'
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+class PrioritySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Priority
+        fields = '__all__'
+

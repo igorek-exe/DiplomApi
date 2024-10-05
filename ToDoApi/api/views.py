@@ -1,61 +1,83 @@
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
-
-from .models import Task
-from .serializers import TaskSerializer
-from rest_framework import generics, permissions
 from rest_framework.response import Response
+from .models import Task
+from .serializers import TaskSerializer, AdminUserSerializer
+from django.contrib.auth import get_user_model
+from rest_framework import generics
+from .serializers import UserSerializer
 from rest_framework import status
-from .models import CUser
-from .serializers import UserSerializer, UserCreateSerializer
+from djoser.views import UserViewSet
 
 
-class UserCreateView(generics.CreateAPIView):
-    serializer_class = UserCreateSerializer
-    permission_classes = [permissions.AllowAny]
+#############################################USER##############################################
+User = get_user_model()
+class UserListView(generics.ListAPIView):
+    """Редактирование только админом поле is_staff and is_active(soft dellete by user)"""
+    def get_serializer_class(self):
+        if self.request.user.is_staff:
+            return AdminUserSerializer  # Администратор получает доступ к расширенному сериализатору
+        return UserSerializer  # Обычные пользователи получают ограниченный сериализатор
 
-    def create(self, request, *args, **kwargs):# cсоздание пользователя
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)  # Валидация данных
-        self.perform_create(serializer)  # Сохранение нового пользователя
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def get_queryset(self):
+        queryset = User.objects.all() if self.request.user.is_staff else User.objects.filter(is_active=True)
+        user_id = self.kwargs.get('id')
+        if user_id:
+            queryset = queryset.filter(id=user_id)
+        return queryset
 
-class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]
-    def post(self, request):
-        try:
-            # Удаляем токен пользователя
-            request.user.auth_token.delete()
-            return Response(status=status.HTTP_200_OK)
-        except Token.DoesNotExist:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+class CustomUserViewSet(UserListView,UserViewSet):
 
-class UserDetailView(generics.RetrieveUpdateAPIView):# детали о юзере
-    queryset = CUser.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    def retrieve(self, request, *args, **kwargs):
+        """Получение данных пользователя по ID"""
+        user_id = kwargs.get('id')
+        user = self.get_queryset().filter(id=user_id).first()  # Получаем пользователя по ID из queryset
+        if user:
+            serializer = self.get_serializer(user)  # Получаем сериализатор
+            return Response(serializer.data)
+        return Response({"detail": "Пользователь не найден."}, status=status.HTTP_404_NOT_FOUND)
 
-    def get_object(self): # Получение текущего аутентифицированного пользователя
-        return self.request.user
+    def retrieve_me(self, request):
+        """Получение данных текущего аутентифицированного пользователя"""
+        user = request.user  # Получаем текущего пользователя из запроса
+        serializer = self.get_serializer(user)  # Получаем сериализатор
+        return Response(serializer.data)  # Возвращаем данные пользовател+
 
-    def patch(self, request, *args, **kwargs):
-        user = self.get_object()
-        print(f"Полученные данные для обновления: {request.data}")
-        serializer = self.get_serializer(user, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
-        print(f"Обновленный пользователь: {serializer.data}")  # Проверка обновленных данных
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def delete(self, request, *args, **kwargs):
-        user = self.get_object()
-        user.is_deleted = True  # Отмечаем пользователя как удаленного
-        user.save()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-########################################################################################################################
+    def destroy(self, request, *args, **kwargs):
+
+        if request.user.is_authenticated:
+            target_user = self.get_object()
+
+            if request.user.is_staff:
+                # Полное удаление для администратора
+                target_user.delete()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+
+            else:
+                target_user.is_active = False
+                target_user.save()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+
+    def update(self, request, *args, **kwargs):
+        user = self.get_object()  # Получаем пользователя
+        # Проверяем, является ли пользователь администратором
+        if request.user.is_staff or request.user == user:
+            if 'username' in request.data:
+                user.username = request.data['username']
+            serializer = self.get_serializer(user, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response({"detail": "У вас нет прав для изменения этого пользователя."},
+                            status=status.HTTP_403_FORBIDDEN)
+
+#############################################TASK##############################################
 
 class TasksApiView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
