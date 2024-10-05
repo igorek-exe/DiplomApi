@@ -36,16 +36,11 @@ class Priority(models.Model):
         return self.name
 
 class Task(models.Model):
-    STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('in_progress', 'In Progress'),
-        ('completed', 'Completed'),
-    ]
 
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=40)
     description = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    status = models.CharField(max_length=40)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     completed_at = models.DateTimeField(blank=True, null=True)
