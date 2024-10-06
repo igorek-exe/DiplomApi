@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78947609-3c55-44f9-8123-6e8b9efdd41e" name="Changes" comment="создание crud пользователя и админа при помощи djoser&#10;удаление кастомного пользователя, проброс endpoint, реализация отправки ссылки для восстоновления сброшенного пароля">
+    <list default="true" id="78947609-3c55-44f9-8123-6e8b9efdd41e" name="Changes" comment="Создание сериализаторов и эндпоинтов для Task, Priority, Category, редактирование модели Task">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDoApi/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDoApi/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ToDoApi/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ToDoApi/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ToDoApi/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ToDoApi/api/views.py" afterDir="false" />
@@ -239,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728123903589</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Создание сериализаторов и эндпоинтов для Task, Priority, Category, редактирование модели Task">
+      <option name="closed" value="true" />
+      <created>1728153481095</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728153481095</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -259,6 +267,7 @@
     <MESSAGE value="create tests and work with permissions" />
     <MESSAGE value="Вакханалия" />
     <MESSAGE value="создание crud пользователя и админа при помощи djoser&#10;удаление кастомного пользователя, проброс endpoint, реализация отправки ссылки для восстоновления сброшенного пароля" />
-    <option name="LAST_COMMIT_MESSAGE" value="создание crud пользователя и админа при помощи djoser&#10;удаление кастомного пользователя, проброс endpoint, реализация отправки ссылки для восстоновления сброшенного пароля" />
+    <MESSAGE value="Создание сериализаторов и эндпоинтов для Task, Priority, Category, редактирование модели Task" />
+    <option name="LAST_COMMIT_MESSAGE" value="Создание сериализаторов и эндпоинтов для Task, Priority, Category, редактирование модели Task" />
   </component>
 </project>

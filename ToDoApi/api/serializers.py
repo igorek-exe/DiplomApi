@@ -44,8 +44,8 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = ['id','created_by', 'title', 'description',
                   'status', 'category', 'priority', 'completed',
-                  'created_at', 'updated_at']
-        read_only_fields = ['created_by', 'created_at', 'updated_at']  # Поля только для чтения
+                  'created_at', 'updated_at',"deleted_at", "deleted"]
+        read_only_fields = ['created_by', 'created_at', 'updated_at', "deleted_at", "deleted"]
     @staticmethod
     def get_created_by(obj):
         return obj.created_by.username if obj.created_by else None
@@ -55,11 +55,12 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'name', 'description', 'created_at',
                   'updated_at', 'deleted_at', 'deleted',]
+        read_only_fields =['id', 'created_at', 'updated_at', 'deleted_at', 'deleted']
 
 
 class PrioritySerializer(serializers.ModelSerializer):
     class Meta:
         model = Priority
         fields = ['id', 'name', 'created_at', 'updated_at', 'deleted_at', 'deleted']
-        read_only_fields = ['id', 'created_at', 'updated_at', 'deleted_at', 'deleted', 'user']
+        read_only_fields = ['id', 'created_at', 'updated_at', 'deleted_at', 'deleted']
 

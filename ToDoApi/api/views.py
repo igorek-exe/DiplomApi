@@ -9,9 +9,9 @@ from rest_framework import status
 from djoser.views import UserViewSet
 from django.utils import timezone
 
-
-#############################################USER##############################################
 User = get_user_model()
+#############################################USER##############################################
+
 class UserListView(generics.ListAPIView):
     """Редактирование только админом поле is_staff and is_active(soft dellete by user)"""
     def get_serializer_class(self):
@@ -78,9 +78,6 @@ class CustomUserViewSet(UserListView,UserViewSet):
 
 #############################################TASK##############################################
 
-
-
-
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -94,7 +91,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
         instance.deleted = True
         instance.deleted_at = timezone.now()
         instance.save()
-
 
 class PriorityViewSet(viewsets.ModelViewSet):
     queryset = Priority.objects.filter(deleted=False)
@@ -114,6 +110,36 @@ class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.filter(deleted=False)
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Базовый запрос
+        queryset = Task.objects.filter(deleted=False)
+        # Если пользователь администратор, возвращаем все задачи
+        if self.request.user.is_staff:
+            queryset = Task.objects.all()
+
+        # Фильтрация по статусу
+        status = self.request.query_params.get('status')
+        if status:
+            queryset = queryset.filter(status=status)
+        # Фильтрация по категории
+        category_id = self.request.query_params.get('category')
+        if category_id:
+            queryset = queryset.filter(category_id=category_id)
+        # Если пользователь не администратор, возвращаем только его задачи
+        if not self.request.user.is_staff:
+            queryset = queryset.filter(created_by=self.request.user)
+
+        # Сортировка
+        order_by = self.request.query_params.get('order_by', 'created_at')  # По умолчанию сортировка по дате создания
+        order_direction = self.request.query_params.get('order_direction', 'asc')  # По умолчанию по возрастанию
+
+        if order_direction == 'desc':
+            queryset = queryset.order_by(f'-{order_by}')  # Убывающая сортировка
+        else:
+            queryset = queryset.order_by(order_by)  # Возрастающая сортировка
+
+        return queryset
     def perform_create(self, serializer):
         # Автоматически установить пользователя, который создал задачу
         serializer.save(created_by=self.request.user)

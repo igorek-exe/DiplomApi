@@ -5,13 +5,9 @@ from api.views import UserListView, CustomUserViewSet,CategoryViewSet, PriorityV
 
 router = DefaultRouter()
 
-
-
-
 router.register(r'categories', CategoryViewSet, basename='category')
 router.register(r'priorities', PriorityViewSet, basename='priority')
-router.register(r'tasks', TaskViewSet, basename='task')
-
+router.register(r'tasks', TaskViewSet, basename='tasks')
 
 urlpatterns = [
     path('users/me/', CustomUserViewSet.as_view({'get': 'retrieve_me',}), name='user-me'),
@@ -37,6 +33,7 @@ urlpatterns += router.urls
 #     "new_password": "your_new_password"
 # }
 #/api/users/reset_password/ сбросить пароль юзера
+# приходит в консоль ссылка
 # /api/users/reset_password_confirm/
 # {
 #     "new_password": "your_new_password_here",
@@ -50,3 +47,6 @@ urlpatterns += router.urls
 # PUT	/tasks/{id}/	Обновить всю задачу по ID	update
 # PATCH	/tasks/{id}/	Частичное обновление задачи	partial_update
 # DELETE	/tasks/{id}/	Удалить задачу по ID	destroy
+# /api/tasks/?status=in_progress сортировка по статусу
+# /api/tasks/?order_by=created_at&order_direction=desc Сортировка по дате создания:
+# api/tasks/?status=in_progress&order_by=created_at&order_direction=asc комбинированный запрос
