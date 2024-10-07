@@ -14,9 +14,9 @@ urlpatterns = [
     path('users/<int:id>/', CustomUserViewSet.as_view({
                                                         'get':'retrieve',
                                                         'put': 'update',
-                                                        'patch': 'partial_update',
+                                                       'patch': 'partial_update',
                                                         'delete': 'destroy',
-                                                       }),
+                                                       }, name="users"),
          name='user-manage'),
 
     path('all_users/', UserListView.as_view(), name='cuser-list'),# Все юзеры
