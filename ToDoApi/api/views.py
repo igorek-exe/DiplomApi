@@ -39,7 +39,7 @@ class CustomUserViewSet(UserListView, UserViewSet):
         if user:
             serializer = self.get_serializer(user)  # Получаем сериализатор
             return Response(serializer.data)
-        return Response({"detail": "Пользователь не найден."}, status=status.HTTP_404_NOT_FOUND)
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
     def retrieve_me(self, request):
         """Получение данных текущего аутентифицированного пользователя"""
@@ -55,12 +55,12 @@ class CustomUserViewSet(UserListView, UserViewSet):
             if request.user.is_staff:
                 # Полное удаление для администратора
                 target_user.delete()
-                return Response({"detail": "Пользователь удален."}, status=status.HTTP_204_NO_CONTENT)
+                return Response(status=status.HTTP_204_NO_CONTENT)
 
             else:
                 target_user.is_active = False
                 target_user.save()
-                return Response({"detail": "Пользователь деактивирован."}, status=status.HTTP_204_NO_CONTENT)
+                return Response(status=status.HTTP_204_NO_CONTENT)
 
         return Response({"detail": "У вас нет прав для удаления этого пользователя."}, status=status.HTTP_403_FORBIDDEN)
 
@@ -103,13 +103,13 @@ class CategoryViewSet(viewsets.ModelViewSet):
         if self.request.user.is_staff:
             # Если администратор — удаляем задачу полностью
             instance.delete()
-            return Response({"detail": "Задача полностью удалена."}, status=status.HTTP_204_NO_CONTENT)
+            return Response( status=status.HTTP_204_NO_CONTENT)
         else:
             # Если не администратор — применяем мягкое удаление
             instance.deleted = True
             instance.deleted_at = timezone.now()
             instance.save()
-            return Response({"detail": "Задача деактивирована (soft delete)."}, status=status.HTTP_200_OK)
+            return Response( status=status.HTTP_204_NO_CONTENT)
 
 
 class PriorityViewSet(viewsets.ModelViewSet):
@@ -133,19 +133,18 @@ class PriorityViewSet(viewsets.ModelViewSet):
         if self.request.user.is_staff:
             # Если администратор — удаляем задачу полностью
             instance.delete()
-            return Response({"detail": "Задача полностью удалена."}, status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             # Если не администратор — применяем мягкое удаление
             instance.deleted = True
             instance.deleted_at = timezone.now()
             instance.save()
-            return Response({"detail": "Задача деактивирована (soft delete)."}, status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.filter(deleted=False)
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
 
